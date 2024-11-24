@@ -16,23 +16,9 @@ import * as path from "path";
 import { toBN } from "../bignumber.ts";
 import { WalletProvider, Item } from "./wallet.ts";
 import { Connection, PublicKey } from "@solana/web3.js";
+import { PROVIDER_CONFIG } from "./tokenUtils.ts";
 
-const PROVIDER_CONFIG = {
-    BIRDEYE_API: "https://public-api.birdeye.so",
-    MAX_RETRIES: 3,
-    RETRY_DELAY: 2000,
-    DEFAULT_RPC: "https://api.mainnet-beta.solana.com",
-    TOKEN_ADDRESSES: {
-        SOL: "So11111111111111111111111111111111111111112",
-        BTC: "qfnqNqs3nCAHjnyCgLRDbBtq4p2MtHZxw8YjSyYhPoL",
-        ETH: "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs",
-        Example: "2weMjPLLybRMMva1fM3U31goWWrCpF59CHWNhnCJ9Vyh",
-    },
-    TOKEN_SECURITY_ENDPOINT: "/defi/token_security?address=",
-    TOKEN_TRADE_DATA_ENDPOINT: "/defi/v3/token/trade-data/single?address=",
-    DEX_SCREENER_API: "https://api.dexscreener.com/latest/dex/tokens/",
-    MAIN_WALLET: "",
-};
+
 
 export class TokenProvider {
     private cache: NodeCache;
@@ -222,8 +208,8 @@ export class TokenProvider {
                         token === SOL
                             ? "solana"
                             : token === BTC
-                              ? "bitcoin"
-                              : "ethereum"
+                                ? "bitcoin"
+                                : "ethereum"
                     ].usd = price;
                 } else {
                     console.warn(`No price data available for token: ${token}`);

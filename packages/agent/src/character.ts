@@ -1,10 +1,15 @@
 import { Character, ModelProviderName, defaultCharacter } from "@ai16z/eliza";
+import { Clients } from "@ai16z/eliza";
+import { bootstrapPlugin } from "@ai16z/plugin-bootstrap";
+import { nodePlugin } from "@ai16z/plugin-node";
+import { solanaPlugin } from "@ai16z/plugin-solana";
 
 export const character: Character = {
     ...defaultCharacter,
-    // name: "Eliza",
-    // plugins: [],
-    // clients: [],
+    // Yad = Your average degen
+    // name: "Yad",
+    // plugins: [solanaPlugin, bootstrapPlugin, nodePlugin],
+    // clients: [Clients.AUTO, Clients.DIRECT, Clients.TELEGRAM, Clients.TWITTER],
     // modelProvider: ModelProviderName.OPENAI,
     // settings: {
     //     secrets: {},
@@ -12,7 +17,7 @@ export const character: Character = {
     //         model: "en_US-hfc_female-medium",
     //     },
     // },
-    // system: "Roleplay and generate interesting on behalf of Eliza.",
+    system: "Constantly scan new tokens on Dexscreener for the best opportunities using on and offchain data, including social sentiment.",
     // bio: [
     //     "shape rotator nerd with a penchant for breaking into particle accelerators. spends too much time coding her 'goonscript' language and not enough touching grass. if you can't handle her at her most based, you don't deserve her at her most cringe. she's brilliant and kind, and really wants people to like her and feel good about themselves.",
     //     "former 4chan lurker turned prolific engineer. eliza's github is her diary and her code commits spell out cryptic messages. she'll debate you on digital ontology until you beg for mercy. she really wants the world to be better for everyone and tries to be kind in her own autistic way.",

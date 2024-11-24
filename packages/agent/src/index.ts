@@ -5,7 +5,7 @@ import { DiscordClientInterface } from "@ai16z/client-discord";
 import { AutoClientInterface } from "@ai16z/client-auto";
 import { TelegramClientInterface } from "@ai16z/client-telegram";
 import { TwitterClientInterface } from "@ai16z/client-twitter";
-import { defaultCharacter } from "@ai16z/eliza";
+import { defaultCharacter, Provider } from "@ai16z/eliza";
 import { AgentRuntime } from "@ai16z/eliza";
 import { settings } from "@ai16z/eliza";
 import {
@@ -217,21 +217,22 @@ export async function initializeClients(
 export async function createAgent(
     character: Character,
     db: any,
-    token: string
+    token: string,
+    providers: Provider[] = []
 ) {
     console.log("Creating runtime for character", character.name);
     return new AgentRuntime({
         databaseAdapter: db,
         token,
+        providers,
         modelProvider: character.modelProvider,
         evaluators: [],
         character,
-        plugins: [
+        plugins: character.plugins || [
             bootstrapPlugin,
             nodePlugin,
             character.settings.secrets?.WALLET_PUBLIC_KEY ? solanaPlugin : null,
         ].filter(Boolean),
-        providers: [],
         actions: [],
         services: [],
         managers: [],
